@@ -18,14 +18,12 @@ export const getTours = async (req, res) => {
 
 
 export const getToursWithPriceWithin = async (req, res) => {
-  const minPrice = req.query.min_price;
-  const maxPrice = req.query.max_price;
+  const minPrice = parseInt(req.query.min_price);
+  const maxPrice = parseInt(req.query.max_price);
   
-  const filterTours = (tours, minPrice, maxPrice) => {
-    return this.filter(tour => tour.price >= minPrice && tour.price <= maxPrice);
-  }
- 
-  const filteredTours = filterTours(tours, minPrice, maxPrice);
+  const toursArray= await tours.find().toArray(); // Assuming you have a Tour model
+  
+  const filteredTours = toursArray.filter(tour => tour.price >= minPrice && tour.price <= maxPrice);
   
   res.status(200).json({
     status: "success",
