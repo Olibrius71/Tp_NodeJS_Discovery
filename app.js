@@ -35,7 +35,7 @@ async function run() {
 run().catch(console.dir);
 
 const dataB = client.db("tp");
-export const tours = dataB.collection("tours");
+export const tours = dataB.collection("full_tours");
 
 export const app = express()
 
